@@ -7,7 +7,7 @@ function App() {
   return (
     <>
       <Container>
-        <Segment inverted color="green">
+        <Segment inverted color="purple">
           <Image src={welcome} size="large" centered />
         </Segment>
       </Container>
