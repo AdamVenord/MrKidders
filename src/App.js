@@ -6,25 +6,21 @@ import welcome from './Imgs/welcome.png'
 export default class App extends Component {
   // change the visible names after you figure it out
   state = { 
-    visible1: false, 
+    visiblePiratesButton: false, 
     // visible2: false,
     // visible3: false,
-    visible4: false,
+    visibleGhostButton: false,
   }
 
-  // its currently making only the ghost story work no matter what button I click on
-  // my guess is to take a look at the buttons themselves
-  // good luck future me
 
+  toggleVisibilityForPiratesButton = () => 
+    this.setState((prevState) => ({ visiblePiratesButton: !prevState.visiblePiratesButton }))
 
-  toggleVisibility = () => 
-    this.setState((prevState) => ({ visible1: !prevState.visible1 }))
-
-  toggleVisibility = () => 
-    this.setState((prevState) => ({ visible4: !prevState.visible4 }))
+  toggleVisibilityForGhostButton = () => 
+    this.setState((prevState) => ({ visibleGhostButton: !prevState.visibleGhostButton }))
 
   render() {
-    const { visible1, visible4 } = this.state
+    const { visiblePiratesButton, visibleGhostButton } = this.state
 
     return (
       <>
@@ -38,19 +34,19 @@ export default class App extends Component {
           <Button 
             inverted 
             color="red"
-            content={visible1 ? 'Show' : 'Hide' }
-            onClick={this.toggleVisibility}
+            content={visiblePiratesButton ? 'Show' : 'Hide' }
+            onClick={this.toggleVisibilityForPiratesButton}
           />
           <Button inverted>Other</Button>
           <Button inverted>Other</Button>
           <Button 
             inverted
             color="black"
-            content={visible4 ? 'Show' : 'Hide' }
-            onClick={this.toggleVisibility}
+            content={visibleGhostButton ? 'Show' : 'Hide' }
+            onClick={this.toggleVisibilityForGhostButton}
           />
           {/* pirates storyline */}
-            <Transition visible={visible1} animation='drop' duration={500}>
+            <Transition visible={visiblePiratesButton} animation='drop' duration={500}>
               <Segment>
                 Begin Pirates Life
               </Segment>
@@ -58,7 +54,7 @@ export default class App extends Component {
           {/* end of pirates storyline */}
 
           {/* ghost storyline */}
-            <Transition visible={visible4} animation='drop' duration={500}>
+            <Transition visible={visibleGhostButton} animation='drop' duration={500}>
               <Segment>
                 Begin Ghost Story
               </Segment>
