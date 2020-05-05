@@ -9,7 +9,7 @@ export default class App extends Component {
     visibleGhostButton: false,
     visiblePiratesButton: false, 
     visibleChoiceToStayInButton: false,
-    // visible3: false,
+    visibleOkayForScaryStories: false,
   }
 
 
@@ -22,9 +22,12 @@ export default class App extends Component {
   toggleVisibilityForTheChoiceToStayIn = () => 
     this.setState((prevState) => ({ visibleChoiceToStayInButton: !prevState.visibleChoiceToStayInButton }))
 
+  toggleVisibilityForOkayForScaryStories = () => 
+    this.setState((prevState) => ({ visibleOkayForScaryStories: !prevState.visibleOkayForScaryStories }))
+
 
   render() {
-    const { visiblePiratesButton, visibleGhostButton, visibleChoiceToStayInButton } = this.state
+    const { visiblePiratesButton, visibleGhostButton, visibleChoiceToStayInButton, visibleOkayForScaryStories } = this.state
 
     return (
       <>
@@ -73,7 +76,26 @@ export default class App extends Component {
               {/* Choice to stay in story line */}
                 <Transition visible={visibleChoiceToStayInButton} animation='drop' duration={500}>
                   <Segment>
-                    Oh Fun, In that case let's tell scary stories
+                    <p>Oh Fun, In that case let's tell scary stories</p>
+                    <Button 
+                      inverted 
+                      color="blue"
+                      content={visibleOkayForScaryStories ? 'woot' : 'Okay' }                  
+                      onClick={this.toggleVisibilityForOkayForScaryStories} 
+                    />
+                  </Segment>
+                  {/* Put an image of kidders with a light bulb over his head */}
+                </Transition>
+
+                {/* So in this transition I want several stroie things to show up
+                this includes things such as words, photos, snippets, and scary faces
+                towards the end, I want mr kidders to tell the full story before
+                the user has a chance to say anything or mkake any choices, I wanna 
+                try this with a sleeper, but im still not sure on how to do that,
+                so this would be a good time to look into that, good luck me */}
+                <Transition visible={visibleOkayForScaryStories} animation='drop' duration={500}>
+                  <Segment>
+                    Okay I got a good one
                   </Segment>
                 </Transition>
               {/* Choice to stay in story line ending */}
