@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
-import { Segment, Container, Image, Header, Button, Transition } from 'semantic-ui-react'
+import { Segment, Container, Image, Header, Button, Transition, } from 'semantic-ui-react'
 import './App.css';
-import welcome from './Imgs/welcome.png'
 // import scrollToComponent from 'react-scroll-to-component'
+import welcome from './Imgs/welcome.png'
+import spookyHouse from './Imgs/spookyhouse.png'
+
 
 export default class App extends Component {
   state = { 
@@ -24,7 +26,6 @@ export default class App extends Component {
 
   toggleVisibilityForOkayForScaryStories = () => 
     this.setState((prevState) => ({ visibleOkayForScaryStories: !prevState.visibleOkayForScaryStories }))
-
 
   render() {
     const { visiblePiratesButton, visibleGhostButton, visibleChoiceToStayInButton, visibleOkayForScaryStories } = this.state
@@ -87,7 +88,7 @@ export default class App extends Component {
                   {/* Put an image of kidders with a light bulb over his head */}
                 </Transition>
 
-                {/* So in this transition I want several stroie things to show up
+                {/* So in this transition I want several stroy things to show up
                 this includes things such as words, photos, snippets, and scary faces
                 towards the end, I want mr kidders to tell the full story before
                 the user has a chance to say anything or mkake any choices, I wanna 
@@ -95,8 +96,16 @@ export default class App extends Component {
                 so this would be a good time to look into that, good luck me */}
                 <Transition visible={visibleOkayForScaryStories} animation='drop' duration={500}>
                   <Segment>
-                    Okay I got a good one
+                    <Image src={spookyHouse} />
+                       <p>It all started on a dark and cloudly night, kind of like tonight</p>
+                       <Button 
+                        inverted 
+                        color="black"
+                        content={visibleOkayForScaryStories ? 'continue' : 'woot' }                  
+                        // onClick={this.toggleVisibilityForOkayForScaryStories} 
+                      />  
                   </Segment>
+                    
                 </Transition>
               {/* Choice to stay in story line ending */}
 
