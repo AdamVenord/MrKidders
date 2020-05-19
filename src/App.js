@@ -4,6 +4,12 @@ import './App.css';
 // import scrollToComponent from 'react-scroll-to-component'
 import welcome from './Imgs/welcome.png'
 import spookyHouse from './Imgs/spookyhouse.png'
+import girldog from './Imgs/girl&dog.png'
+import ouijaboard from './Imgs/ouijaboard.png'
+import spookydoll from './Imgs/spookydoll.png'
+import spookyhallway from './Imgs/spookyhallway.png'
+import spookykitchen from './Imgs/spookykitchen.png'
+import scare from './Imgs/scare.png'
 
 
 export default class App extends Component {
@@ -12,6 +18,12 @@ export default class App extends Component {
     visiblePiratesButton: false, 
     visibleChoiceToStayInButton: false,
     visibleOkayForScaryStories: false,
+    visibleGhostButtonPart2: false,
+    visibleGhostButtonPart3: false,
+    visibleGhostButtonPart4: false,
+    visibleGhostButtonPart5: false,
+    visibleGhostButtonPart6: false,
+    visibleGhostButtonPart7: false,
   }
 
 
@@ -27,8 +39,37 @@ export default class App extends Component {
   toggleVisibilityForOkayForScaryStories = () => 
     this.setState((prevState) => ({ visibleOkayForScaryStories: !prevState.visibleOkayForScaryStories }))
 
+  toggleVisibilityForGhostPart2 = () => 
+    this.setState((prevState) => ({ visibleGhostButtonPart2: !prevState.visibleGhostButtonPart2}))
+
+  toggleVisibilityForGhostPart3 = () => 
+    this.setState((prevState) => ({ visibleGhostButtonPart3: !prevState.visibleGhostButtonPart3}))
+  
+  toggleVisibilityForGhostPart4 = () => 
+    this.setState((prevState) => ({ visibleGhostButtonPart4: !prevState.visibleGhostButtonPart4}))
+
+  toggleVisibilityForGhostPart5 = () => 
+    this.setState((prevState) => ({ visibleGhostButtonPart5: !prevState.visibleGhostButtonPart5}))
+
+  toggleVisibilityForGhostPart6 = () => 
+    this.setState((prevState) => ({ visibleGhostButtonPart6: !prevState.visibleGhostButtonPart6}))
+
+  toggleVisibilityForGhostPart7 = () => 
+    this.setState((prevState) => ({ visibleGhostButtonPart7: !prevState.visibleGhostButtonPart7}))
+
   render() {
-    const { visiblePiratesButton, visibleGhostButton, visibleChoiceToStayInButton, visibleOkayForScaryStories } = this.state
+    const { 
+      visiblePiratesButton, 
+      visibleGhostButton, 
+      visibleChoiceToStayInButton, 
+      visibleOkayForScaryStories, 
+      visibleGhostButtonPart2, 
+      visibleGhostButtonPart3,  
+      visibleGhostButtonPart4,  
+      visibleGhostButtonPart5,  
+      visibleGhostButtonPart6,  
+      visibleGhostButtonPart7,  
+    } = this.state
 
     return (
       <>
@@ -96,16 +137,110 @@ export default class App extends Component {
                 so this would be a good time to look into that, good luck me */}
                 <Transition visible={visibleOkayForScaryStories} animation='drop' duration={500}>
                   <Segment>
+                    <p>It all started on a dark and cloudly night, kind of like tonight</p>
                     <Image src={spookyHouse} />
-                       <p>It all started on a dark and cloudly night, kind of like tonight</p>
-                       <Button 
-                        inverted 
+                    <br />
+                    <Button 
+                      color="black"
+                      content={visibleOkayForScaryStories ? 'continue' : 'woot' }                  
+                      onClick={this.toggleVisibilityForGhostPart2} 
+                    />  
+                  </Segment>
+                </Transition>
+
+                <Transition visible={visibleGhostButtonPart2} animation='drop' duration={500}>
+                  <Segment>
+                    <br />
+                      <p>
+                      A girl and her dog were sitting in her room and decided they would have some fun.
+                      They grabbed a ouija board and decided to contact the master of dolls.
+                      </p>
+                      <Image src={girldog} />
+                      <br />
+                      <Button 
                         color="black"
-                        content={visibleOkayForScaryStories ? 'continue' : 'woot' }                  
-                        // onClick={this.toggleVisibilityForOkayForScaryStories} 
+                        content={visibleGhostButtonPart2 ? 'continue' : 'woot' }                  
+                        onClick={this.toggleVisibilityForGhostPart3} 
                       />  
                   </Segment>
-                    
+                </Transition>
+
+                <Transition visible={visibleGhostButtonPart3} animation='drop' duration={500}>
+                  <Segment>
+                    <br />
+                      <p>
+                      They ask if the master of dolls to make an appearence and it worked!
+                      The panchet moved to spell out, "okay here I come"
+                      </p>
+                      <Image src={ouijaboard} />
+                      <br />
+                      <Button 
+                        color="black"
+                        content={visibleGhostButtonPart2 ? 'continue' : 'woot' }                  
+                        onClick={this.toggleVisibilityForGhostPart4} 
+                      />  
+                  </Segment>
+                </Transition>
+                <Transition visible={visibleGhostButtonPart4} animation='drop' duration={500}>
+                  <Segment>
+                    <br />
+                      <p>
+                      A doll showed up on the table and asked if they wanted to play a game.
+                      They said yes and suddenly the room went dark
+                      </p>
+                      <Image src={spookydoll} />
+                      <br />
+                      <Button 
+                        color="black"
+                        content={visibleGhostButtonPart2 ? 'continue' : 'woot' }                  
+                        onClick={this.toggleVisibilityForGhostPart5} 
+                      />  
+                  </Segment>
+                </Transition>
+                <Transition visible={visibleGhostButtonPart5} animation='drop' duration={500}>
+                  <Segment>
+                    <br />
+                      <p>
+                      They heard a noise coming from downstairs and made their way into the kitchen.
+                      </p>
+                      <Image src={spookyhallway} />
+                      <br />
+                      <Button 
+                        color="black"
+                        content={visibleGhostButtonPart2 ? 'continue' : 'woot' }                  
+                        onClick={this.toggleVisibilityForGhostPart6} 
+                      />  
+                  </Segment>
+                </Transition>
+                <Transition visible={visibleGhostButtonPart6} animation='drop' duration={500}>
+                  <Segment>
+                    <br />
+                      <p>
+                      They froze in fear as what stood before them was a demon brought by the master of dolls
+                      </p>
+                      <Image src={spookykitchen} />
+                      <br />
+                      <Button 
+                        color="black"
+                        content={visibleGhostButtonPart2 ? 'continue' : 'woot' }                  
+                        onClick={this.toggleVisibilityForGhostPart7} 
+                      />  
+                  </Segment>
+                </Transition>
+                <Transition visible={visibleGhostButtonPart7} animation='drop' duration={500}>
+                  <Segment>
+                    <br />
+                      <p>
+                        suddenly it jumped at them and they got dragged into the nightmare realm
+                      </p>
+                      <Image src={scare} />
+                      <br />
+                      <Button 
+                        color="black"
+                        content={visibleGhostButtonPart2 ? 'continue' : 'woot' }                  
+                        // onClick={this.toggleVisibilityForGhostPart7} 
+                      />  
+                  </Segment>
                 </Transition>
               {/* Choice to stay in story line ending */}
 
