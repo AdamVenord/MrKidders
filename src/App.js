@@ -24,6 +24,8 @@ export default class App extends Component {
     visibleGhostButtonPart5: false,
     visibleGhostButtonPart6: false,
     visibleGhostButtonPart7: false,
+    visibleGhostButtonEndOfStory: false,
+    visibleGhostStoryCrasher: false,
   }
 
 
@@ -57,6 +59,12 @@ export default class App extends Component {
   toggleVisibilityForGhostPart7 = () => 
     this.setState((prevState) => ({ visibleGhostButtonPart7: !prevState.visibleGhostButtonPart7}))
 
+  toggleVisibilityForGhostEndOfStory = () => 
+    this.setState((prevState) => ({ visibleGhostButtonEndOfStory: !prevState.visibleGhostButtonEndOfStory}))
+
+  toggleVisibilityForGhostStoryCrasher = () => 
+    this.setState((prevState) => ({ visibleGhostButtonCrasher: !prevState.visibleGhostButtonCrasher}))
+
   render() {
     const { 
       visiblePiratesButton, 
@@ -68,7 +76,9 @@ export default class App extends Component {
       visibleGhostButtonPart4,  
       visibleGhostButtonPart5,  
       visibleGhostButtonPart6,  
-      visibleGhostButtonPart7,  
+      visibleGhostButtonPart7,
+      visibleGhostButtonEndOfStory,
+      visibleGhostButtonCrasher,
     } = this.state
 
     return (
@@ -181,6 +191,7 @@ export default class App extends Component {
                       />  
                   </Segment>
                 </Transition>
+
                 <Transition visible={visibleGhostButtonPart4} animation='drop' duration={500}>
                   <Segment>
                     <br />
@@ -197,6 +208,7 @@ export default class App extends Component {
                       />  
                   </Segment>
                 </Transition>
+
                 <Transition visible={visibleGhostButtonPart5} animation='drop' duration={500}>
                   <Segment>
                     <br />
@@ -212,6 +224,7 @@ export default class App extends Component {
                       />  
                   </Segment>
                 </Transition>
+
                 <Transition visible={visibleGhostButtonPart6} animation='drop' duration={500}>
                   <Segment>
                     <br />
@@ -227,6 +240,7 @@ export default class App extends Component {
                       />  
                   </Segment>
                 </Transition>
+
                 <Transition visible={visibleGhostButtonPart7} animation='drop' duration={500}>
                   <Segment>
                     <br />
@@ -237,8 +251,45 @@ export default class App extends Component {
                       <br />
                       <Button 
                         color="black"
-                        content={visibleGhostButtonPart2 ? 'continue' : 'woot' }                  
-                        // onClick={this.toggleVisibilityForGhostPart7} 
+                        content={visibleGhostButtonPart7 ? 'End' : 'woot' }                  
+                        onClick={this.toggleVisibilityForGhostEndOfStory} 
+                      />  
+                  </Segment>
+                </Transition>
+                
+                <Transition visible={visibleGhostButtonEndOfStory} animation='drop' duration={500}>
+                  <Segment>
+                    <br />
+                      <p>Aren't I a good story teller</p>
+                      <Button 
+                        color="black"
+                        content={visibleGhostButtonEndOfStory ? 'Yes' : 'woot' }                  
+                        onClick={this.toggleVisibilityForGhostStoryCrasher} 
+                      />  
+                      <Button 
+                        color="black"
+                        content={visibleGhostButtonEndOfStory ? 'No' : 'woot' }                  
+                        onClick={this.toggleVisibilityForGhostStoryCrasher} 
+                      /> 
+                  </Segment>
+                </Transition>
+                {/* still need to fix this, im not sure why but its showing up no matter what, even if i put
+                it as false. I think that it may be connected to that so check that out and make sure everythings
+                good. If it is delete it and try again */}
+
+
+                {/* so next part which is going to be right after this, I want to see if I can integrate 
+                sound into this (probably by using a faker sound kind of thing) I just want to look into this 
+                and if it seems too difficult then I should try and get it so random spooky images come 
+                onto the screen good luck and have fun */}
+                <Transition visible={visibleGhostButtonCrasher} animation='drop' duration={500}>
+                  <Segment>
+                    <br />
+                      <p>Wait did you hear that</p>
+                      <Button 
+                        color="black"
+                        content={visibleGhostButtonCrasher ? 'Yes' : 'woot' }                  
+                        // onClick={this.toggleVisibilityForGhostStoryCrasher} 
                       />  
                   </Segment>
                 </Transition>
