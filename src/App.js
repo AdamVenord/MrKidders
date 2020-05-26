@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Segment, Container, Image, Header, Button, Transition, } from 'semantic-ui-react'
 import './App.css';
 // import scrollToComponent from 'react-scroll-to-component'
+
+// image imports
 import welcome from './Imgs/welcome.png'
 import spookyHouse from './Imgs/spookyhouse.png'
 import girldog from './Imgs/girl&dog.png'
@@ -10,12 +12,13 @@ import spookydoll from './Imgs/spookydoll.png'
 import spookyhallway from './Imgs/spookyhallway.png'
 import spookykitchen from './Imgs/spookykitchen.png'
 import scare from './Imgs/scare.png'
+import Catdoormanhookdoor from './Imgs/catdoormanhookdoor.png'
 
 
 export default class App extends Component {
   state = { 
+  // Ghost story states
     visibleGhostButton: false,
-    visiblePiratesButton: false, 
     visibleChoiceToStayInButton: false,
     visibleOkayForScaryStories: false,
     visibleGhostButtonPart2: false,
@@ -26,9 +29,14 @@ export default class App extends Component {
     visibleGhostButtonPart7: false,
     visibleGhostButtonEndOfStory: false,
     visibleGhostStoryCrasher: false,
+    visibleSpookySound: true,
+    visibleDoorStairs: false,
+
+  // Pirate Story States
+    visiblePiratesButton: false, 
   }
 
-
+  // Ghost story toggles
   toggleVisibilityForGhostButton = () => 
     this.setState((prevState) => ({ visibleGhostButton: !prevState.visibleGhostButton }))
   
@@ -63,7 +71,13 @@ export default class App extends Component {
     this.setState((prevState) => ({ visibleGhostButtonEndOfStory: !prevState.visibleGhostButtonEndOfStory}))
 
   toggleVisibilityForGhostStoryCrasher = () => 
-    this.setState((prevState) => ({ visibleGhostButtonCrasher: !prevState.visibleGhostButtonCrasher}))
+    this.setState((prevState) => ({ visibleGhostStoryCrasher: !prevState.visibleGhostStoryCrasher}))
+
+  toggleVisibilityForSpookySound = () => 
+    this.setState((prevState) => ({ visibleSpookySound: !prevState.visibleSpookySound}))
+
+  toggleVisibilityForDoorStairs = () => 
+    this.setState((prevState) => ({ visibleDoorStairs: !prevState.visibleDoorStairs}))
 
   render() {
     const { 
@@ -78,7 +92,9 @@ export default class App extends Component {
       visibleGhostButtonPart6,  
       visibleGhostButtonPart7,
       visibleGhostButtonEndOfStory,
-      visibleGhostButtonCrasher,
+      visibleGhostStoryCrasher,
+      visibleSpookySound,
+      visibleDoorStairs,
     } = this.state
 
     return (
@@ -273,23 +289,58 @@ export default class App extends Component {
                       /> 
                   </Segment>
                 </Transition>
-                {/* still need to fix this, im not sure why but its showing up no matter what, even if i put
-                it as false. I think that it may be connected to that so check that out and make sure everythings
-                good. If it is delete it and try again */}
-
 
                 {/* so next part which is going to be right after this, I want to see if I can integrate 
                 sound into this (probably by using a faker sound kind of thing) I just want to look into this 
                 and if it seems too difficult then I should try and get it so random spooky images come 
                 onto the screen good luck and have fun */}
-                <Transition visible={visibleGhostButtonCrasher} animation='drop' duration={500}>
+                <Transition visible={visibleGhostStoryCrasher} animation='drop' duration={500}>
                   <Segment>
                     <br />
                       <p>Wait did you hear that</p>
                       <Button 
                         color="black"
-                        content={visibleGhostButtonCrasher ? 'Yes' : 'woot' }                  
-                        // onClick={this.toggleVisibilityForGhostStoryCrasher} 
+                        content={visibleGhostStoryCrasher ? 'Yes What Was It' : 'woot' }                  
+                        onClick={this.toggleVisibilityForSpookySound} 
+                      />  
+                      <Button 
+                        color="black"
+                        content={visibleGhostStoryCrasher ? 'What No' : 'woot' }                  
+                        onClick={this.toggleVisibilityForSpookySound} 
+                      /> 
+                  </Segment>
+                </Transition>
+
+                <Transition visible={visibleSpookySound} animation='drop' duration={500}>
+                  <Segment>
+                    <br />
+                      <p>Let's go check it out</p>
+                      <Button 
+                        color="black"
+                        content={visibleSpookySound ? 'Okay' : 'woot' }                  
+                        onClick={this.toggleVisibilityForDoorStairs} 
+                      /> 
+                      <Button 
+                        color="black"
+                        content={visibleSpookySound ? 'I dont know' : 'woot' }                  
+                        onClick={this.toggleVisibilityForDoorStairs} 
+                      /> 
+                  </Segment>
+                </Transition>
+
+                <Transition visible={visibleDoorStairs} animation='drop' duration={500}>
+                  <Segment>
+                    <br />
+                      <p>
+                      Kidders immediatly runs out the door and you can here him going down the stairs
+                      most likely towards the kitchen
+                      </p>
+                      <Image src={Catdoormanhookdoor} />
+                      <br />
+                      <Button 
+                        color="black"
+                        content={visibleDoorStairs ? 'continue' : 'woot' }                  
+                        onClick={this.toggleVisibilityForGhostPart7} 
                       />  
                   </Segment>
                 </Transition>
