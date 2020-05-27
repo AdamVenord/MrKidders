@@ -13,6 +13,7 @@ import spookyhallway from './Imgs/spookyhallway.png'
 import spookykitchen from './Imgs/spookykitchen.png'
 import scare from './Imgs/scare.png'
 import Catdoormanhookdoor from './Imgs/catdoormanhookdoor.png'
+import Jultan from './Imgs/Jultan.png'
 
 
 export default class App extends Component {
@@ -31,6 +32,9 @@ export default class App extends Component {
     visibleGhostStoryCrasher: false,
     visibleSpookySound: true,
     visibleDoorStairs: false,
+    visibleFollowDownStairs: false,
+    visibleLivingRoomDoll: false,
+    visibleGhostAttack: false,
 
   // Pirate Story States
     visiblePiratesButton: false, 
@@ -40,27 +44,24 @@ export default class App extends Component {
   toggleVisibilityForGhostButton = () => 
     this.setState((prevState) => ({ visibleGhostButton: !prevState.visibleGhostButton }))
   
-  toggleVisibilityForPiratesButton = () => 
-    this.setState((prevState) => ({ visiblePiratesButton: !prevState.visiblePiratesButton }))
-
   toggleVisibilityForTheChoiceToStayIn = () => 
     this.setState((prevState) => ({ visibleChoiceToStayInButton: !prevState.visibleChoiceToStayInButton }))
-
+    
   toggleVisibilityForOkayForScaryStories = () => 
     this.setState((prevState) => ({ visibleOkayForScaryStories: !prevState.visibleOkayForScaryStories }))
-
+    
   toggleVisibilityForGhostPart2 = () => 
     this.setState((prevState) => ({ visibleGhostButtonPart2: !prevState.visibleGhostButtonPart2}))
-
+    
   toggleVisibilityForGhostPart3 = () => 
     this.setState((prevState) => ({ visibleGhostButtonPart3: !prevState.visibleGhostButtonPart3}))
-  
+    
   toggleVisibilityForGhostPart4 = () => 
     this.setState((prevState) => ({ visibleGhostButtonPart4: !prevState.visibleGhostButtonPart4}))
-
+    
   toggleVisibilityForGhostPart5 = () => 
     this.setState((prevState) => ({ visibleGhostButtonPart5: !prevState.visibleGhostButtonPart5}))
-
+    
   toggleVisibilityForGhostPart6 = () => 
     this.setState((prevState) => ({ visibleGhostButtonPart6: !prevState.visibleGhostButtonPart6}))
 
@@ -72,16 +73,30 @@ export default class App extends Component {
 
   toggleVisibilityForGhostStoryCrasher = () => 
     this.setState((prevState) => ({ visibleGhostStoryCrasher: !prevState.visibleGhostStoryCrasher}))
-
+    
   toggleVisibilityForSpookySound = () => 
     this.setState((prevState) => ({ visibleSpookySound: !prevState.visibleSpookySound}))
-
+    
   toggleVisibilityForDoorStairs = () => 
     this.setState((prevState) => ({ visibleDoorStairs: !prevState.visibleDoorStairs}))
 
+  toggleVisibilityForFollowDownStairs = () => 
+    this.setState((prevState) => ({ visibleFollowDownStairs: !prevState.visibleFollowDownStairs}))
+
+  toggleVisibilityForLivingRoomDoll = () => 
+    this.setState((prevState) => ({ visibleLivingRoomDoll: !prevState.visibleLivingRoomDoll}))
+
+  toggleVisibilityForGhostAttack = () => 
+    this.setState((prevState) => ({ visibleGhostAttack: !prevState.visibleGhostAttack}))
+
+    // pirate toggles
+    
+  toggleVisibilityForPiratesButton = () => 
+      this.setState((prevState) => ({ visiblePiratesButton: !prevState.visiblePiratesButton }))
+
   render() {
     const { 
-      visiblePiratesButton, 
+    // ghost states
       visibleGhostButton, 
       visibleChoiceToStayInButton, 
       visibleOkayForScaryStories, 
@@ -95,6 +110,13 @@ export default class App extends Component {
       visibleGhostStoryCrasher,
       visibleSpookySound,
       visibleDoorStairs,
+      visibleFollowDownStairs,
+      visibleLivingRoomDoll,
+      visibleGhostAttack,
+
+    // pirate states
+      visiblePiratesButton,
+
     } = this.state
 
     return (
@@ -196,7 +218,7 @@ export default class App extends Component {
                     <br />
                       <p>
                       They ask if the master of dolls to make an appearence and it worked!
-                      The panchet moved to spell out, "okay here I come"
+                      The planchette moved to spell out, "okay here I come"
                       </p>
                       <Image src={ouijaboard} />
                       <br />
@@ -333,17 +355,67 @@ export default class App extends Component {
                     <br />
                       <p>
                       Kidders immediatly runs out the door and you can here him going down the stairs
-                      most likely towards the kitchen
                       </p>
                       <Image src={Catdoormanhookdoor} />
                       <br />
                       <Button 
                         color="black"
                         content={visibleDoorStairs ? 'continue' : 'woot' }                  
+                        onClick={this.toggleVisibilityForFollowDownStairs} 
+                      />  
+                  </Segment>
+                </Transition>
+
+                <Transition visible={visibleFollowDownStairs} animation='drop' duration={500}>
+                  <Segment>
+                    <br />
+                      <p>
+                        You follow the sound of kidders, slowly and nervously making you way towards where
+                        you can here him pitter pattering around
+                      </p>
+                      
+                      <br />
+                      <Button 
+                        color="black"
+                        content={visibleFollowDownStairs ? 'continue' : 'woot' }                  
+                        onClick={this.toggleVisibilityForLivingRoomDoll} 
+                      />  
+                  </Segment>
+                </Transition>
+
+                <Transition visible={visibleLivingRoomDoll} animation='drop' duration={500}>
+                  <Segment>
+                    <br />
+                      <p>
+                        You walk into the living room and see kidders next to a doll, 
+                        "look at what I found", he says to you 
+                      </p>
+                      <br />
+                      <Button 
+                        color="black"
+                        content={visibleLivingRoomDoll ? 'continue' : 'woot' }                  
+                        onClick={this.toggleVisibilityForGhostAttack} 
+                      />  
+                  </Segment>
+                </Transition>
+
+                <Transition visible={visibleGhostAttack} animation='drop' duration={500}>
+                  <Segment>
+                    <br />
+                      <p>
+                        Suddenly the doll explodes with a cloud of dust, the dust then pulls in and creates
+                        a spectral wolf, you and kidders immediatly run out of the room
+                      </p>
+                      <Image src={Jultan} /> 
+                      <br />
+                      <Button 
+                        color="black"
+                        content={visibleGhostAttack ? 'continue' : 'woot' }                  
                         onClick={this.toggleVisibilityForGhostPart7} 
                       />  
                   </Segment>
                 </Transition>
+
               {/* Choice to stay in story line ending */}
 
               {/* end of ghost storyline */}
