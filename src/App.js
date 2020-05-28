@@ -14,6 +14,7 @@ import spookykitchen from './Imgs/spookykitchen.png'
 import scare from './Imgs/scare.png'
 import Catdoormanhookdoor from './Imgs/catdoormanhookdoor.png'
 import Jultan from './Imgs/Jultan.png'
+import catdoll from './Imgs/catdoll.png'
 
 
 export default class App extends Component {
@@ -35,6 +36,7 @@ export default class App extends Component {
     visibleFollowDownStairs: false,
     visibleLivingRoomDoll: false,
     visibleGhostAttack: false,
+    visibleRunOutside: false,
 
   // Pirate Story States
     visiblePiratesButton: false, 
@@ -89,6 +91,9 @@ export default class App extends Component {
   toggleVisibilityForGhostAttack = () => 
     this.setState((prevState) => ({ visibleGhostAttack: !prevState.visibleGhostAttack}))
 
+  toggleVisibilityForRunOutside = () => 
+    this.setState((prevState) => ({ visibleRunOutside: !prevState.visibleRunOutside}))
+
     // pirate toggles
     
   toggleVisibilityForPiratesButton = () => 
@@ -113,6 +118,7 @@ export default class App extends Component {
       visibleFollowDownStairs,
       visibleLivingRoomDoll,
       visibleGhostAttack,
+      visibleRunOutside,
 
     // pirate states
       visiblePiratesButton,
@@ -360,7 +366,7 @@ export default class App extends Component {
                       <br />
                       <Button 
                         color="black"
-                        content={visibleDoorStairs ? 'continue' : 'woot' }                  
+                        content={visibleDoorStairs ? 'Follow' : 'woot' }                  
                         onClick={this.toggleVisibilityForFollowDownStairs} 
                       />  
                   </Segment>
@@ -390,6 +396,7 @@ export default class App extends Component {
                         You walk into the living room and see kidders next to a doll, 
                         "look at what I found", he says to you 
                       </p>
+                      <Image src={catdoll} />
                       <br />
                       <Button 
                         color="black"
@@ -410,9 +417,32 @@ export default class App extends Component {
                       <br />
                       <Button 
                         color="black"
-                        content={visibleGhostAttack ? 'continue' : 'woot' }                  
+                        content={visibleGhostAttack ? 'Run' : 'woot' }                  
+                        onClick={this.toggleVisibilityForRunOutside} 
+                      />  
+                      <Button 
+                        color="black"
+                        content={visibleGhostAttack ? 'Hide' : 'woot' }                  
+                        // onClick={this.toggleVisibilityForGhostPart7} 
+                      />  
+                  </Segment>
+                </Transition>
+
+                <Transition visible={visibleRunOutside} animation='drop' duration={500}>
+                  <Segment>
+                    <br />
+                      <p>
+                        You and kidders run out the door at full speed and down the street all while 
+                        you can hear it's ghostly paws chasing you down
+                      </p>
+                      {/* <Image src={Running} />  */}
+                      <br />
+                      <Button 
+                        color="black"
+                        content={visibleGhostAttack ? 'Keep Running' : 'woot' }                  
                         onClick={this.toggleVisibilityForGhostPart7} 
                       />  
+                       
                   </Segment>
                 </Transition>
 
