@@ -15,6 +15,7 @@ import scare from './Imgs/scare.png'
 import Catdoormanhookdoor from './Imgs/catdoormanhookdoor.png'
 import Jultan from './Imgs/Jultan.png'
 import catdoll from './Imgs/catdoll.png'
+import running from './Imgs/running.png'
 
 
 export default class App extends Component {
@@ -31,12 +32,15 @@ export default class App extends Component {
     visibleGhostButtonPart7: false,
     visibleGhostButtonEndOfStory: false,
     visibleGhostStoryCrasher: false,
-    visibleSpookySound: true,
+    visibleSpookySound: false,
     visibleDoorStairs: false,
     visibleFollowDownStairs: false,
     visibleLivingRoomDoll: false,
-    visibleGhostAttack: false,
+    visibleGhostAttack: true,
     visibleRunOutside: false,
+    visibleRunDownTheStreet: false,
+    visibleTurnRight: false,
+    visibleCrashThroughTheWindow: false,
 
   // Pirate Story States
     visiblePiratesButton: false, 
@@ -94,6 +98,15 @@ export default class App extends Component {
   toggleVisibilityForRunOutside = () => 
     this.setState((prevState) => ({ visibleRunOutside: !prevState.visibleRunOutside}))
 
+  toggleVisibilityForRunDownTheStreet = () => 
+    this.setState((prevState) => ({ visibleRunDownTheStreet: !prevState.visibleRunDownTheStreet}))
+
+  toggleVisibilityForTurnRight = () => 
+    this.setState((prevState) => ({ visibleTurnRight: !prevState.visibleTurnRight}))
+
+  toggleVisibilityForCrashThroughTheWindow = () => 
+    this.setState((prevState) => ({ visibleCrashThroughTheWindow: !prevState.visibleCrashThroughTheWindow}))
+
     // pirate toggles
     
   toggleVisibilityForPiratesButton = () => 
@@ -119,6 +132,10 @@ export default class App extends Component {
       visibleLivingRoomDoll,
       visibleGhostAttack,
       visibleRunOutside,
+      visibleRunDownTheStreet,
+      visibleTurnRight,
+      visibleCrashThroughTheWindow,
+
 
     // pirate states
       visiblePiratesButton,
@@ -435,14 +452,65 @@ export default class App extends Component {
                         You and kidders run out the door at full speed and down the street all while 
                         you can hear it's ghostly paws chasing you down
                       </p>
-                      {/* <Image src={Running} />  */}
+                      <Image src={running} /> 
                       <br />
                       <Button 
                         color="black"
-                        content={visibleGhostAttack ? 'Keep Running' : 'woot' }                  
+                        content={visibleRunOutside ? 'Keep Running' : 'woot' }                  
+                        onClick={this.toggleVisibilityForRunDownTheStreet} 
+                      />
+                  </Segment>
+                </Transition>
+
+                <Transition visible={visibleRunDownTheStreet} animation='drop' duration={500}>
+                  <Segment>
+                    <br />
+                      <p>
+                        You come to a cross roads at the end of the street
+                      </p>
+                      <br />
+                      <Button 
+                        color="black"
+                        content={visibleRunDownTheStreet ? 'Go Left Into The Park' : 'woot' }                  
                         onClick={this.toggleVisibilityForGhostPart7} 
-                      />  
-                       
+                      />
+                      <Button 
+                        color="black"
+                        content={visibleRunDownTheStreet ? 'Turn Right And Keep Running Down The Street' : 'woot' }                  
+                        onClick={this.toggleVisibilityForTurnRight} 
+                      />
+                  </Segment>
+                </Transition>
+
+                <Transition visible={visibleTurnRight} animation='drop' duration={500}>
+                  <Segment>
+                    <br />
+                      <p>
+                        You Turn Right and keep running hopeing you have lost him. Suddenly he hops in front of you
+                        and screams a ghostly howl, you run into a nearby house and close the door behind you
+                      </p>
+                      <br />
+                      <Button 
+                        color="black"
+                        content={visibleRunDownTheStreet ? 'Conitnue' : 'woot' }                  
+                        onClick={this.toggleVisibilityForCrashThroughTheWindow} 
+                      />
+                  </Segment>
+                </Transition>
+
+                <Transition visible={visibleCrashThroughTheWindow} animation='drop' duration={500}>
+                  <Segment>
+                    <br />
+                      <p>
+                        You hear the ghost crash through the window and you immediately run out of the 
+                        house through the back door and hop over the fence
+                      </p>
+                      <br />
+                      <Button 
+                        color="black"
+                        content={visibleCrashThroughTheWindow ? 'Conitnue' : 'woot' }                  
+                        onClick={this.toggleVisibilityForGhostPart7} 
+                      />
                   </Segment>
                 </Transition>
 
