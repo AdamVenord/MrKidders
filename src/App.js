@@ -36,11 +36,13 @@ export default class App extends Component {
     visibleDoorStairs: false,
     visibleFollowDownStairs: false,
     visibleLivingRoomDoll: false,
-    visibleGhostAttack: true,
+    visibleGhostAttack: false,
     visibleRunOutside: false,
-    visibleRunDownTheStreet: false,
+    visibleRunDownTheStreet: true,
     visibleTurnRight: false,
     visibleCrashThroughTheWindow: false,
+    visibleIntoAnotherYard: false,
+    visibleYetAnotherYard: false,
 
   // Pirate Story States
     visiblePiratesButton: false, 
@@ -107,6 +109,12 @@ export default class App extends Component {
   toggleVisibilityForCrashThroughTheWindow = () => 
     this.setState((prevState) => ({ visibleCrashThroughTheWindow: !prevState.visibleCrashThroughTheWindow}))
 
+  toggleVisibilityForIntoAnotherYard = () => 
+    this.setState((prevState) => ({ visibleIntoAnotherYard: !prevState.visibleIntoAnotherYard}))
+
+  toggleVisibilityForYetAnotherYard = () => 
+    this.setState((prevState) => ({ visibleYetAnotherYard: !prevState.visibleYetAnotherYard}))
+
     // pirate toggles
     
   toggleVisibilityForPiratesButton = () => 
@@ -135,6 +143,8 @@ export default class App extends Component {
       visibleRunDownTheStreet,
       visibleTurnRight,
       visibleCrashThroughTheWindow,
+      visibleIntoAnotherYard,
+      visibleYetAnotherYard,
 
 
     // pirate states
@@ -509,6 +519,36 @@ export default class App extends Component {
                       <Button 
                         color="black"
                         content={visibleCrashThroughTheWindow ? 'Conitnue' : 'woot' }                  
+                        onClick={this.toggleVisibilityForIntoAnotherYard} 
+                      />
+                  </Segment>
+                </Transition>
+
+                <Transition visible={visibleIntoAnotherYard} animation='drop' duration={500}>
+                  <Segment>
+                    <br />
+                      <p>
+                        hopping into another yard you hear it smash through the fence behind you
+                      </p>
+                      <br />
+                      <Button 
+                        color="black"
+                        content={visibleIntoAnotherYard ? 'Conitnue' : 'woot' }                  
+                        onClick={this.toggleVisibilityForYetAnotherYard} 
+                      />
+                  </Segment>
+                </Transition>
+
+                <Transition visible={visibleYetAnotherYard} animation='drop' duration={500}>
+                  <Segment>
+                    <br />
+                      <p>
+                        Running very quickly you and kiders take one last hop over another fence
+                      </p>
+                      <br />
+                      <Button 
+                        color="black"
+                        content={visibleYetAnotherYard ? 'Conitnue' : 'woot' }                  
                         onClick={this.toggleVisibilityForGhostPart7} 
                       />
                   </Segment>
