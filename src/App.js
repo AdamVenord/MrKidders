@@ -16,6 +16,7 @@ import Catdoormanhookdoor from './Imgs/catdoormanhookdoor.png'
 import Jultan from './Imgs/Jultan.png'
 import catdoll from './Imgs/catdoll.png'
 import running from './Imgs/running.png'
+import badending from './Imgs/Badending.png'
 
 
 export default class App extends Component {
@@ -38,11 +39,18 @@ export default class App extends Component {
     visibleLivingRoomDoll: false,
     visibleGhostAttack: false,
     visibleRunOutside: false,
-    visibleRunDownTheStreet: true,
+    visibleRunDownTheStreet: false,
     visibleTurnRight: false,
     visibleCrashThroughTheWindow: false,
     visibleIntoAnotherYard: false,
     visibleYetAnotherYard: false,
+    visibleInThePark: false,
+    visibleCornered: true,
+    visibleBadEnding: false,
+    visibleFightPart1: false, 
+    visibleFightPart2: false, 
+    visibleFightPart3: false, 
+    visibleDeath: false,
 
   // Pirate Story States
     visiblePiratesButton: false, 
@@ -115,6 +123,28 @@ export default class App extends Component {
   toggleVisibilityForYetAnotherYard = () => 
     this.setState((prevState) => ({ visibleYetAnotherYard: !prevState.visibleYetAnotherYard}))
 
+  toggleVisibilityForInThePark = () => 
+    this.setState((prevState) => ({ visibleInThePark: !prevState.visibleInThePark}))
+
+  toggleVisibilityForCornered = () => 
+    this.setState((prevState) => ({ visibleCornered: !prevState.visibleCornered}))
+
+  toggleVisibilityForDeath = () => 
+    this.setState((prevState) => ({ visibleDeath: !prevState.visibleDeath}))
+
+  toggleVisibilityForBadEnding = () => 
+    this.setState((prevState) => ({ visibleBadEnding: !prevState.visibleBadEnding}))
+
+  toggleVisibilityForFight1 = () => 
+    this.setState((prevState) => ({ visibleFightPart1: !prevState.visibleFightPart1}))
+
+  toggleVisibilityForFight2 = () => 
+    this.setState((prevState) => ({ visibleFightPart2: !prevState.visibleFightPart2}))
+
+  toggleVisibilityForFight3 = () => 
+    this.setState((prevState) => ({ visibleFightPart3: !prevState.visibleFightPart3}))
+    
+
     // pirate toggles
     
   toggleVisibilityForPiratesButton = () => 
@@ -145,6 +175,13 @@ export default class App extends Component {
       visibleCrashThroughTheWindow,
       visibleIntoAnotherYard,
       visibleYetAnotherYard,
+      visibleInThePark,
+      visibleCornered,
+      visibleDeath,
+      visibleBadEnding,
+      visibleFightPart1,
+      visibleFightPart2,
+      visibleFightPart3,
 
 
     // pirate states
@@ -482,7 +519,7 @@ export default class App extends Component {
                       <Button 
                         color="black"
                         content={visibleRunDownTheStreet ? 'Go Left Into The Park' : 'woot' }                  
-                        onClick={this.toggleVisibilityForGhostPart7} 
+                        onClick={this.toggleVisibilityForInThePark} 
                       />
                       <Button 
                         color="black"
@@ -549,8 +586,127 @@ export default class App extends Component {
                       <Button 
                         color="black"
                         content={visibleYetAnotherYard ? 'Conitnue' : 'woot' }                  
-                        onClick={this.toggleVisibilityForGhostPart7} 
+                        onClick={this.toggleVisibilityForInThePark} 
                       />
+                  </Segment>
+                </Transition>
+
+                <Transition visible={visibleInThePark} animation='drop' duration={500}>
+                  <Segment>
+                    <br />
+                      <p>
+                        You end up in the park with the ghost hot on your tail
+                      </p>
+                      <br />
+                      <Button 
+                        color="black"
+                        content={visibleInThePark ? 'Conitnue' : 'woot' }                  
+                        onClick={this.toggleVisibilityForCornered} 
+                      />
+                  </Segment>
+                </Transition>
+
+                <Transition visible={visibleCornered} animation='drop' duration={500}>
+                  <Segment>
+                    <br />
+                      <p>
+                        Coming into a small circle of trees you and kidders have no where left to run
+                      </p>
+                      <br />
+                      <Button 
+                        color="black"
+                        content={visibleCornered ? 'Fight' : 'woot' }                  
+                        onClick={this.toggleVisibilityForFight1} 
+                      />
+                      <Button 
+                        color="black"
+                        content={visibleCornered ? 'Do Nothing' : 'woot' }                  
+                        onClick={this.toggleVisibilityForDeath} 
+                      />
+                  </Segment>
+                </Transition>
+
+                <Transition visible={visibleFightPart1} animation='drop' duration={500}>
+                  <Segment>
+                    <br />
+                      <p>
+                        You and kidders pick up a nearby tree branch and try and fight the ghost
+                      </p>
+                      <br />
+                      <Button 
+                        color="black"
+                        content={visibleCornered ? 'Try and Hit Him' : 'woot' }                  
+                        onClick={this.toggleVisibilityForDeath} 
+                      />
+                      <Button 
+                        color="black"
+                        content={visibleCornered ? 'Let Kidders get the first hit' : 'woot' }                  
+                        onClick={this.toggleVisibilityForFight2} 
+                      />
+                  </Segment>
+                </Transition>
+
+                <Transition visible={visibleFightPart2} animation='drop' duration={500}>
+                  <Segment>
+                    <br />
+                      <p>
+                        Kidders gets the first hit on him and as you go for a second you 
+                        notice that your branch goes straight through it
+                      </p>
+                      <br />
+                      <Button 
+                        color="black"
+                        content={visibleCornered ? 'Pick up kidders and hit him with him' : 'woot' }                  
+                        onClick={this.toggleVisibilityForFight3} 
+                      />
+                      <Button 
+                        color="black"
+                        content={visibleCornered ? 'Try to hit him again' : 'woot' }                  
+                        onClick={this.toggleVisibilityForDeath} 
+                      />
+                  </Segment>
+                </Transition>
+
+                <Transition visible={visibleFightPart3} animation='drop' duration={500}>
+                  <Segment>
+                    <br />
+                      <p>
+                        You pick up kidders and with a swift smack you hit the ghost and noticably hurt it.
+                         Kidders tells you to do it again. You swing again and the ghost grabs kidders and tosses him
+                      </p>
+                      <br />
+                      <Button 
+                        color="black"
+                        content={visibleCornered ? 'Run for kidders' : 'woot' }                  
+                        onClick={this.toggleVisibilityForDeath} 
+                      />
+                      <Button 
+                        color="black"
+                        content={visibleCornered ? 'Try and fight' : 'woot' }                  
+                        onClick={this.toggleVisibilityForDeath} 
+                      />
+                  </Segment>
+                </Transition>
+
+                <Transition visible={visibleDeath} animation='drop' duration={500}>
+                  <Segment>
+                    <br />
+                      <p>
+                        With a quick stab the ghost pierces your heart and tears your chest apart, 
+                        then disapears as your world goes dark
+                      </p>
+                      <br />
+                      <Button 
+                        color="black"
+                        content={visibleCornered ? 'Oh No' : 'woot' }                  
+                        onClick={this.toggleVisibilityForBadEnding} 
+                      />
+                  </Segment>
+                </Transition>
+
+                <Transition visible={visibleBadEnding} animation='drop' duration={500}>
+                  <Segment>
+                      <Image src={badending} />
                   </Segment>
                 </Transition>
 
