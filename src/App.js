@@ -37,7 +37,7 @@ export default class App extends Component {
     visibleDoorStairs: false,
     visibleFollowDownStairs: false,
     visibleLivingRoomDoll: false,
-    visibleGhostAttack: false,
+    visibleGhostAttack: true,
     visibleRunOutside: false,
     visibleRunDownTheStreet: false,
     visibleTurnRight: false,
@@ -45,12 +45,13 @@ export default class App extends Component {
     visibleIntoAnotherYard: false,
     visibleYetAnotherYard: false,
     visibleInThePark: false,
-    visibleCornered: true,
+    visibleCornered: false,
     visibleBadEnding: false,
     visibleFightPart1: false, 
     visibleFightPart2: false, 
     visibleFightPart3: false, 
     visibleDeath: false,
+    visibleHideInTheKitchen: false,
 
   // Pirate Story States
     visiblePiratesButton: false, 
@@ -143,6 +144,9 @@ export default class App extends Component {
 
   toggleVisibilityForFight3 = () => 
     this.setState((prevState) => ({ visibleFightPart3: !prevState.visibleFightPart3}))
+
+  toggleVisibilityForHideInTheKitchen = () => 
+    this.setState((prevState) => ({ visibleHideInTheKitchen: !prevState.visibleHideInTheKitchen}))
     
 
     // pirate toggles
@@ -182,6 +186,7 @@ export default class App extends Component {
       visibleFightPart1,
       visibleFightPart2,
       visibleFightPart3,
+      visibleHideInTheKitchen,
 
 
     // pirate states
@@ -249,10 +254,7 @@ export default class App extends Component {
 
                 {/* So in this transition I want several stroy things to show up
                 this includes things such as words, photos, snippets, and scary faces
-                towards the end, I want mr kidders to tell the full story before
-                the user has a chance to say anything or mkake any choices, I wanna 
-                try this with a sleeper, but im still not sure on how to do that,
-                so this would be a good time to look into that, good luck me */}
+                towards the end */}
                 <Transition visible={visibleOkayForScaryStories} animation='drop' duration={500}>
                   <Segment>
                     <p>It all started on a dark and cloudly night, kind of like tonight</p>
@@ -382,10 +384,9 @@ export default class App extends Component {
                   </Segment>
                 </Transition>
 
-                {/* so next part which is going to be right after this, I want to see if I can integrate 
-                sound into this (probably by using a faker sound kind of thing) I just want to look into this 
-                and if it seems too difficult then I should try and get it so random spooky images come 
-                onto the screen good luck and have fun */}
+                {/*  so I want to experiment with this area during design phase, 
+                possibly adding sounds and scares  */}
+
                 <Transition visible={visibleGhostStoryCrasher} animation='drop' duration={500}>
                   <Segment>
                     <br />
@@ -487,10 +488,31 @@ export default class App extends Component {
                       <Button 
                         color="black"
                         content={visibleGhostAttack ? 'Hide' : 'woot' }                  
-                        // onClick={this.toggleVisibilityForGhostPart7} 
+                        onClick={this.toggleVisibilityForHideInTheKitchen} 
                       />  
                   </Segment>
                 </Transition>
+
+                {/* start of hide story line */}
+
+                <Transition visible={visibleHideInTheKitchen} animation='drop' duration={500}>
+                  <Segment>
+                    <br />
+                      <p>
+                        Kidders yells, "come on". As you both run into the kitchen
+                      </p>
+                      <br />
+                      <Button 
+                        color="black"
+                        content={visibleGhostAttack ? 'Run' : 'woot' }                  
+                        onClick={this.toggleVisibilityForRunOutside} 
+                      />   
+                  </Segment>
+                </Transition>
+
+                {/* end of hide story line */}
+
+                {/* run outside story line aka death scene 1 */}
 
                 <Transition visible={visibleRunOutside} animation='drop' duration={500}>
                   <Segment>
@@ -709,6 +731,8 @@ export default class App extends Component {
                       <Image src={badending} />
                   </Segment>
                 </Transition>
+
+                {/* run outside storyline end */}
 
               {/* Choice to stay in story line ending */}
 
