@@ -52,6 +52,7 @@ export default class App extends Component {
     visibleFightPart3: false, 
     visibleDeath: false,
     visibleHideInTheKitchen: false,
+    visibleHideInSomething: false,
 
   // Pirate Story States
     visiblePiratesButton: false, 
@@ -147,6 +148,9 @@ export default class App extends Component {
 
   toggleVisibilityForHideInTheKitchen = () => 
     this.setState((prevState) => ({ visibleHideInTheKitchen: !prevState.visibleHideInTheKitchen}))
+
+  toggleVisibilityForHideInSomething = () => 
+    this.setState((prevState) => ({ visibleHideInSomething: !prevState.visibleHideInSomething}))
     
 
     // pirate toggles
@@ -187,6 +191,7 @@ export default class App extends Component {
       visibleFightPart2,
       visibleFightPart3,
       visibleHideInTheKitchen,
+      visibleHideInSomething,
 
 
     // pirate states
@@ -504,11 +509,47 @@ export default class App extends Component {
                       <br />
                       <Button 
                         color="black"
-                        content={visibleGhostAttack ? 'Run' : 'woot' }                  
-                        onClick={this.toggleVisibilityForRunOutside} 
-                      />   
+                        content={visibleGhostAttack ? 'Jump Into The Closet' : 'woot' }                  
+                        onClick={this.toggleVisibilityForHideInSomething} 
+                      />  
+                      <Button 
+                        color="black"
+                        content={visibleGhostAttack ? 'Go Under The Sink' : 'woot' }                  
+                        onClick={this.toggleVisibilityForHideInSomething} 
+                      />  
                   </Segment>
                 </Transition>
+
+                <Transition visible={visibleHideInSomething} animation='drop' duration={500}>
+                  <Segment>
+                    <br />
+                      <p>
+                        You and Kidders rush to hide and close the door quickly behind you and wait, 
+                        for a second theres nothing but silence 
+                      </p>
+                      <br />
+                      <Button 
+                        color="black"
+                        content={visibleGhostAttack ? 'Jump Into The Closet' : 'woot' }                  
+                        // onClick={this.toggleVisibilityForRunOutside} 
+                      /> 
+                  </Segment>
+                </Transition>
+
+
+                           .-.
+              heehee      /aa \_
+                        __\-  / )                 .-.
+              .-.      (__/    /        haha    _/oo \
+            _/ ..\       /     \               ( \v  /__
+            ( \  u/__    /       \__             \/   ___)
+            \    \__)   \_.-._._   )  .-.       /     \
+            /     \             `-`  / ee\_    /       \_
+          __/       \               __\  o/ )   \_.-.__   )
+        (   _._.-._/     hoho     (___   \/           '-'
+      jgs '-'                        /     \
+                                  _/       \    teehee
+                                  (   __.-._/
 
                 {/* end of hide story line */}
 
