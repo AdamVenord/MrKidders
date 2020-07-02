@@ -37,7 +37,7 @@ export default class App extends Component {
     visibleDoorStairs: false,
     visibleFollowDownStairs: false,
     visibleLivingRoomDoll: false,
-    visibleGhostAttack: true,
+    visibleGhostAttack: false,
     visibleRunOutside: false,
     visibleRunDownTheStreet: false,
     visibleTurnRight: false,
