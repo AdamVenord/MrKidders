@@ -35,7 +35,7 @@ export default class App extends Component {
     visibleGhostButtonEndOfStory: false,
     visibleGhostStoryCrasher: false,
     visibleSpookySound: false,
-    visibleDoorStairs: true,
+    visibleDoorStairs: false,
     visibleDoNotFollow: false,
     visibleFollowDownStairs: false,
     visibleLivingRoomDoll: false,
@@ -54,7 +54,9 @@ export default class App extends Component {
     visibleFightPart3: false, 
     visibleDeath: false,
     visibleHideInTheKitchen: false,
-    visibleHideInSomething: false,
+    visibleHideInSomething: true,
+    visibleSneakAPeak: false,
+    visibleStayQuiet: false,
 
   // Pirate Story States
     visiblePiratesButton: false, 
@@ -156,7 +158,12 @@ export default class App extends Component {
 
   toggleVisibilityForHideInSomething = () => 
     this.setState((prevState) => ({ visibleHideInSomething: !prevState.visibleHideInSomething}))
+
+  toggleVisibilityForSneakAPeak = () => 
+    this.setState((prevState) => ({ visibleSneakAPeak: !prevState.visibleSneakAPeak}))
     
+  toggleVisibilityForStayQuiet = () => 
+    this.setState((prevState) => ({ visibleStayQuiet: !prevState.visibleStayQuiet}))
 
     // pirate toggles
     
@@ -198,6 +205,8 @@ export default class App extends Component {
       visibleFightPart3,
       visibleHideInTheKitchen,
       visibleHideInSomething,
+      visibleSneakAPeak,
+      visibleStayQuiet,
 
 
     // pirate states
@@ -212,9 +221,12 @@ export default class App extends Component {
       <br />
       <br />
         <Container centered>
+          {/* Change this segment so after it shows up it says begin, then once you click begin 
+          it disapears. I feel like it would be alot nicer and flow better with the project :] */}
           <Segment inverted color="purple">
             <Image src={welcome} size="large" centered />
           </Segment>
+
           <Header textAlign="center" color="grey">
             What Path Should We Choose?
           </Header>
@@ -548,17 +560,55 @@ export default class App extends Component {
                     <br />
                       <p>
                         You and Kidders rush to hide and close the door quickly behind you and wait, 
-                        for a second theres nothing but silence 
+                        for a second theres nothing but silence
                       </p>
                       <br />
                       <Button 
                         color="black"
-                        content={visibleGhostAttack ? 'Jump Into The Closet' : 'woot' }                  
-                        // onClick={this.toggleVisibilityForRunOutside} 
+                        content={visibleHideInSomething ? 'Stay Quietly' : 'woot' }                  
+                        onClick={this.toggleVisibilityForStayQuiet} 
+                      /> 
+                      <Button 
+                        color="black"
+                        content={visibleHideInSomething ? 'Sneak A peak' : 'woot' }                  
+                        onClick={this.toggleVisibilityForSneakAPeak} 
                       /> 
                   </Segment>
                 </Transition>
 
+                <Transition visible={visibleSneakAPeak} animation='drop' duration={500}>
+                  <Segment>
+                    <br />
+                      <p>
+                        You and Kidders open the door slightly and take a look. Suddenly the door slams open and 
+                        you watch as kidders is swallowed whole and the last thing you see is a pair of jaws coming at you
+                      </p>
+                      <Image src={badending} />   
+                  </Segment>
+                </Transition>
+
+                <Transition visible={visibleStayQuiet} animation='drop' duration={500}>
+                  <Segment>
+                    <br />
+                      <p>
+                        You hear a glass break from across the room, 
+                      </p>
+                      <br />
+                      <Button 
+                        color="black"
+                        content={visibleStayQuiet ? 'I have no idea' : 'woot' }                  
+                        // onClick={this.toggleVisibilityForRunOutside} 
+                      /> 
+                      <Button 
+                        color="black"
+                        content={visibleStayQuiet ? 'Hold Your Breath' : 'woot' }                  
+                        // onClick={this.toggleVisibilityForSneakAPeak} 
+                      /> 
+                  </Segment>
+                </Transition>
+
+                {/* Do a double copy of the story so that if you choose to go into the closet you'll die,
+              but it will seem like the same except you'll randomly die :} */}
 
                            .-.
               heehee      /aa \_
