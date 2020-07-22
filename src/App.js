@@ -17,6 +17,7 @@ import Jultan from './Imgs/Jultan.png'
 import catdoll from './Imgs/catdoll.png'
 import running from './Imgs/running.png'
 import badending from './Imgs/Badending.png'
+import sadending from './Imgs/sadending.png'
 
 
 export default class App extends Component {
@@ -34,7 +35,8 @@ export default class App extends Component {
     visibleGhostButtonEndOfStory: false,
     visibleGhostStoryCrasher: false,
     visibleSpookySound: false,
-    visibleDoorStairs: false,
+    visibleDoorStairs: true,
+    visibleDoNotFollow: false,
     visibleFollowDownStairs: false,
     visibleLivingRoomDoll: false,
     visibleGhostAttack: false,
@@ -100,6 +102,9 @@ export default class App extends Component {
 
   toggleVisibilityForFollowDownStairs = () => 
     this.setState((prevState) => ({ visibleFollowDownStairs: !prevState.visibleFollowDownStairs}))
+
+  toggleVisibilityForDoNotFollow = () => 
+    this.setState((prevState) => ({ visibleDoNotFollow: !prevState.visibleDoNotFollow}))
 
   toggleVisibilityForLivingRoomDoll = () => 
     this.setState((prevState) => ({ visibleLivingRoomDoll: !prevState.visibleLivingRoomDoll}))
@@ -175,6 +180,7 @@ export default class App extends Component {
       visibleSpookySound,
       visibleDoorStairs,
       visibleFollowDownStairs,
+      visibleDoNotFollow,
       visibleLivingRoomDoll,
       visibleGhostAttack,
       visibleRunOutside,
@@ -439,6 +445,23 @@ export default class App extends Component {
                         content={visibleDoorStairs ? 'Follow' : 'woot' }                  
                         onClick={this.toggleVisibilityForFollowDownStairs} 
                       />  
+                      <Button 
+                        color="black"
+                        content={visibleDoorStairs ? 'Do Not Follow' : 'woot' }                  
+                        onClick={this.toggleVisibilityForDoNotFollow} 
+                      />  
+                  </Segment>
+                </Transition>
+
+                <Transition visible={visibleDoNotFollow} animation='drop' duration={500}>
+                  <Segment>
+                    <br />
+                      <p>
+                        Kidders disappeared that night, you sometimes wondered what would have happend if you had gone with him
+                      </p>
+                      <Image src={sadending} />
+                      <br />
+
                   </Segment>
                 </Transition>
 
@@ -509,12 +532,12 @@ export default class App extends Component {
                       <br />
                       <Button 
                         color="black"
-                        content={visibleGhostAttack ? 'Jump Into The Closet' : 'woot' }                  
+                        content={visibleHideInTheKitchen ? 'Jump Into The Closet' : 'woot' }                  
                         onClick={this.toggleVisibilityForHideInSomething} 
                       />  
                       <Button 
                         color="black"
-                        content={visibleGhostAttack ? 'Go Under The Sink' : 'woot' }                  
+                        content={visibleHideInTheKitchen ? 'Go Under The Sink' : 'woot' }                  
                         onClick={this.toggleVisibilityForHideInSomething} 
                       />  
                   </Segment>
