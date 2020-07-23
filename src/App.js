@@ -596,12 +596,18 @@ export default class App extends Component {
                       <br />
                       <Button 
                         color="black"
-                        content={visibleStayQuiet ? 'I have no idea' : 'woot' }                  
+                        content={visibleStayQuiet ? 'Pray For Mercy' : 'woot' }                  
                         // onClick={this.toggleVisibilityForRunOutside} 
                       /> 
                       <Button 
                         color="black"
                         content={visibleStayQuiet ? 'Hold Your Breath' : 'woot' }                  
+                        // onClick={this.toggleVisibilityForSneakAPeak} 
+                      /> 
+
+                      <Button 
+                        color="black"
+                        content={visibleStayQuiet ? 'Make A Break For It' : 'woot' }                  
                         // onClick={this.toggleVisibilityForSneakAPeak} 
                       /> 
                   </Segment>
