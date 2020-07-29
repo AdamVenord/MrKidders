@@ -61,6 +61,7 @@ export default class App extends Component {
     visibleSneakAPeak2: false,
     visibleStayQuiet2: false,
     visibleWrongPlaceToHide: false,
+    visiblePrayDeath: false,
 
   // Pirate Story States
     visiblePiratesButton: false, 
@@ -181,10 +182,13 @@ export default class App extends Component {
   toggleVisibilityForWrongPlaceToHide = () => 
     this.setState((prevState) => ({ visibleWrongPlaceToHide: !prevState.visibleWrongPlaceToHide}))
 
+  toggleVisibilityForPrayDeath = () => 
+    this.setState((prevState) => ({ visiblePrayDeath: !prevState.visiblePrayDeath}))
+
     // pirate toggles
     
   toggleVisibilityForPiratesButton = () => 
-      this.setState((prevState) => ({ visiblePiratesButton: !prevState.visiblePiratesButton }))
+    this.setState((prevState) => ({ visiblePiratesButton: !prevState.visiblePiratesButton }))
 
   render() {
     const { 
@@ -227,6 +231,7 @@ export default class App extends Component {
       visibleSneakAPeak2,
       visibleStayQuiet2,
       visibleWrongPlaceToHide,
+      visiblePrayDeath,
 
 
     // pirate states
@@ -617,7 +622,7 @@ export default class App extends Component {
                       <Button 
                         color="black"
                         content={visibleStayQuiet ? 'Pray For Mercy' : 'woot' }                  
-                        // onClick={this.toggleVisibilityForRunOutside} 
+                        onClick={this.toggleVisibilityForPrayDeath} 
                       /> 
                       <Button 
                         color="black"
@@ -675,7 +680,7 @@ export default class App extends Component {
                       <Button 
                         color="black"
                         content={visibleStayQuiet2 ? 'Pray For Mercy' : 'woot' }                  
-                        // onClick={this.toggleVisibilityForRunOutside} 
+                        onClick={this.toggleVisibilityForPrayDeath} 
                       /> 
                       <Button 
                         color="black"
@@ -697,6 +702,18 @@ export default class App extends Component {
                       <p>
                         For a second nothing happens, then suddenly the door is slammed open and kidders and
                         you are torn apart 
+                      </p>
+                      <br />
+                      <Image src={badending} /> 
+                  </Segment>
+                </Transition>
+
+                <Transition visible={visiblePrayDeath} animation='drop' duration={500}>
+                  <Segment>
+                    <br />
+                      <p>
+                        You pray to your god quietly, but the wolf hears you and tears the door off it's 
+                        hinges. The last thing you see is a claw flying at your face
                       </p>
                       <br />
                       <Image src={badending} /> 
