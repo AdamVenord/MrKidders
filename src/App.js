@@ -53,10 +53,14 @@ export default class App extends Component {
     visibleFightPart2: false, 
     visibleFightPart3: false, 
     visibleDeath: false,
-    visibleHideInTheKitchen: false,
+    visibleHideInTheKitchen: true,
     visibleHideInSomething: false,
     visibleSneakAPeak: false,
     visibleStayQuiet: false,
+    visibleHideInSomething2: false,
+    visibleSneakAPeak2: false,
+    visibleStayQuiet2: false,
+    visibleWrongPlaceToHide: false,
 
   // Pirate Story States
     visiblePiratesButton: false, 
@@ -165,6 +169,18 @@ export default class App extends Component {
   toggleVisibilityForStayQuiet = () => 
     this.setState((prevState) => ({ visibleStayQuiet: !prevState.visibleStayQuiet}))
 
+  toggleVisibilityForHideInSomething2 = () => 
+    this.setState((prevState) => ({ visibleHideInSomething2: !prevState.visibleHideInSomething2}))
+
+  toggleVisibilityForSneakAPeak2 = () => 
+    this.setState((prevState) => ({ visibleSneakAPeak2: !prevState.visibleSneakAPeak2}))
+    
+  toggleVisibilityForStayQuiet2 = () => 
+    this.setState((prevState) => ({ visibleStayQuiet2: !prevState.visibleStayQuiet2}))
+
+  toggleVisibilityForWrongPlaceToHide = () => 
+    this.setState((prevState) => ({ visibleWrongPlaceToHide: !prevState.visibleWrongPlaceToHide}))
+
     // pirate toggles
     
   toggleVisibilityForPiratesButton = () => 
@@ -207,6 +223,10 @@ export default class App extends Component {
       visibleHideInSomething,
       visibleSneakAPeak,
       visibleStayQuiet,
+      visibleHideInSomething2,
+      visibleSneakAPeak2,
+      visibleStayQuiet2,
+      visibleWrongPlaceToHide,
 
 
     // pirate states
@@ -545,7 +565,7 @@ export default class App extends Component {
                       <Button 
                         color="black"
                         content={visibleHideInTheKitchen ? 'Jump Into The Closet' : 'woot' }                  
-                        onClick={this.toggleVisibilityForHideInSomething} 
+                        onClick={this.toggleVisibilityForHideInSomething2} 
                       />  
                       <Button 
                         color="black"
@@ -610,6 +630,76 @@ export default class App extends Component {
                         content={visibleStayQuiet ? 'Make A Break For It' : 'woot' }                  
                         // onClick={this.toggleVisibilityForSneakAPeak} 
                       /> 
+                  </Segment>
+                </Transition>
+
+                <Transition visible={visibleHideInSomething2} animation='drop' duration={500}>
+                  <Segment>
+                    <br />
+                      <p>
+                        You and Kidders rush to hide and close the door quickly behind you and wait, 
+                        for a second theres nothing but silence
+                      </p>
+                      <br />
+                      <Button 
+                        color="black"
+                        content={visibleHideInSomething2 ? 'Stay Quietly' : 'woot' }                  
+                        onClick={this.toggleVisibilityForStayQuiet2} 
+                      /> 
+                      <Button 
+                        color="black"
+                        content={visibleHideInSomething2 ? 'Sneak A peak' : 'woot' }                  
+                        onClick={this.toggleVisibilityForSneakAPeak2} 
+                      /> 
+                  </Segment>
+                </Transition>
+
+                <Transition visible={visibleSneakAPeak2} animation='drop' duration={500}>
+                  <Segment>
+                    <br />
+                      <p>
+                        You and Kidders open the door slightly and take a look. Suddenly the door slams open and 
+                        you watch as kidders is swallowed whole and the last thing you see is a pair of jaws coming at you
+                      </p>
+                      <Image src={badending} />   
+                  </Segment>
+                </Transition>
+
+                <Transition visible={visibleStayQuiet2} animation='drop' duration={500}>
+                  <Segment>
+                    <br />
+                      <p>
+                        You hear a glass break from across the room, 
+                      </p>
+                      <br />
+                      <Button 
+                        color="black"
+                        content={visibleStayQuiet2 ? 'Pray For Mercy' : 'woot' }                  
+                        // onClick={this.toggleVisibilityForRunOutside} 
+                      /> 
+                      <Button 
+                        color="black"
+                        content={visibleStayQuiet2 ? 'Hold Your Breath' : 'woot' }                  
+                        onClick={this.toggleVisibilityForWrongPlaceToHide} 
+                      /> 
+
+                      <Button 
+                        color="black"
+                        content={visibleStayQuiet2 ? 'Make A Break For It' : 'woot' }                  
+                        // onClick={this.toggleVisibilityForSneakAPeak} 
+                      /> 
+                  </Segment>
+                </Transition>
+
+                <Transition visible={visibleWrongPlaceToHide} animation='drop' duration={500}>
+                  <Segment>
+                    <br />
+                      <p>
+                        For a second nothing happens, then suddenly the door is slammed open and kidders and
+                        you are torn apart 
+                      </p>
+                      <br />
+                      <Image src={badending} /> 
                   </Segment>
                 </Transition>
 
