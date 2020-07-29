@@ -62,6 +62,7 @@ export default class App extends Component {
     visibleStayQuiet2: false,
     visibleWrongPlaceToHide: false,
     visiblePrayDeath: false,
+    visibleMakeABreakDeath: false,
 
   // Pirate Story States
     visiblePiratesButton: false, 
@@ -185,6 +186,9 @@ export default class App extends Component {
   toggleVisibilityForPrayDeath = () => 
     this.setState((prevState) => ({ visiblePrayDeath: !prevState.visiblePrayDeath}))
 
+  toggleVisibilityForMakeABreakDeath = () => 
+    this.setState((prevState) => ({ visibleMakeABreakDeath: !prevState.visibleMakeABreakDeath}))
+
     // pirate toggles
     
   toggleVisibilityForPiratesButton = () => 
@@ -232,6 +236,7 @@ export default class App extends Component {
       visibleStayQuiet2,
       visibleWrongPlaceToHide,
       visiblePrayDeath,
+      visibleMakeABreakDeath,
 
 
     // pirate states
@@ -633,7 +638,7 @@ export default class App extends Component {
                       <Button 
                         color="black"
                         content={visibleStayQuiet ? 'Make A Break For It' : 'woot' }                  
-                        // onClick={this.toggleVisibilityForSneakAPeak} 
+                        onClick={this.toggleVisibilityForMakeABreakDeath} 
                       /> 
                   </Segment>
                 </Transition>
@@ -691,7 +696,7 @@ export default class App extends Component {
                       <Button 
                         color="black"
                         content={visibleStayQuiet2 ? 'Make A Break For It' : 'woot' }                  
-                        // onClick={this.toggleVisibilityForSneakAPeak} 
+                        onClick={this.toggleVisibilityForMakeABreakDeath} 
                       /> 
                   </Segment>
                 </Transition>
@@ -714,6 +719,19 @@ export default class App extends Component {
                       <p>
                         You pray to your god quietly, but the wolf hears you and tears the door off it's 
                         hinges. The last thing you see is a claw flying at your face
+                      </p>
+                      <br />
+                      <Image src={badending} /> 
+                  </Segment>
+                </Transition>
+
+                <Transition visible={visibleMakeABreakDeath} animation='drop' duration={500}>
+                  <Segment>
+                    <br />
+                      <p>
+                        Kidders and you decide to make a break for it and run out of the kitchen at full speed,
+                        you don't make it very far before the ghost tears you in half and the last thing you see
+                        is kidders being chased into another room
                       </p>
                       <br />
                       <Image src={badending} /> 
