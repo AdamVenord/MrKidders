@@ -54,7 +54,7 @@ export default class App extends Component {
     visibleFightPart3: false, 
     visibleDeath: false,
     visibleHideInTheKitchen: false,
-    visibleHideInSomething: true,
+    visibleHideInSomething: false,
     visibleSneakAPeak: false,
     visibleStayQuiet: false,
 
