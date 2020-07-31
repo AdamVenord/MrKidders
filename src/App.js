@@ -63,6 +63,7 @@ export default class App extends Component {
     visibleWrongPlaceToHide: false,
     visiblePrayDeath: false,
     visibleMakeABreakDeath: false,
+    visibleHoldingBreath: false, 
 
   // Pirate Story States
     visiblePiratesButton: false, 
@@ -189,6 +190,9 @@ export default class App extends Component {
   toggleVisibilityForMakeABreakDeath = () => 
     this.setState((prevState) => ({ visibleMakeABreakDeath: !prevState.visibleMakeABreakDeath}))
 
+  toggleVisibilityForHoldingBreath = () => 
+    this.setState((prevState) => ({ visibleHoldingBreath: !prevState.visibleHoldingBreath}))
+
     // pirate toggles
     
   toggleVisibilityForPiratesButton = () => 
@@ -237,6 +241,7 @@ export default class App extends Component {
       visibleWrongPlaceToHide,
       visiblePrayDeath,
       visibleMakeABreakDeath,
+      visibleHoldingBreath,
 
 
     // pirate states
@@ -621,7 +626,7 @@ export default class App extends Component {
                   <Segment>
                     <br />
                       <p>
-                        You hear a glass break from across the room, 
+                        You hear a glass break from across the room and you wonder what to do
                       </p>
                       <br />
                       <Button 
@@ -632,7 +637,7 @@ export default class App extends Component {
                       <Button 
                         color="black"
                         content={visibleStayQuiet ? 'Hold Your Breath' : 'woot' }                  
-                        // onClick={this.toggleVisibilityForSneakAPeak} 
+                        onClick={this.toggleVisibilityForHoldingBreath} 
                       /> 
 
                       <Button 
@@ -679,7 +684,7 @@ export default class App extends Component {
                   <Segment>
                     <br />
                       <p>
-                        You hear a glass break from across the room, 
+                        You hear a glass break from across the room and wonder what to do
                       </p>
                       <br />
                       <Button 
@@ -705,8 +710,8 @@ export default class App extends Component {
                   <Segment>
                     <br />
                       <p>
-                        For a second nothing happens, then suddenly the door is slammed open and kidders and
-                        you are torn apart 
+                        For a second nothing happens, then suddenly the door is ripped off its hinges
+                        then kidders and you are torn apart 
                       </p>
                       <br />
                       <Image src={badending} /> 
@@ -735,6 +740,23 @@ export default class App extends Component {
                       </p>
                       <br />
                       <Image src={badending} /> 
+                  </Segment>
+                </Transition>
+
+                <Transition visible={visibleHoldingBreath} animation='drop' duration={500}>
+                  <Segment>
+                    <br />
+                      <p>
+                        You hold your breath and cover kidders mouth, from across the room you hear the ghost
+                        tear the hinges off of the closet door. Then slowly creep out of the room
+                      </p>
+                      <br />
+                      <Button 
+                        color="black"
+                        content={visibleHoldingBreath ? 'Relief' : 'woot' }                  
+                        // onClick={this.toggleVisibilityForPrayDeath}
+                      /> 
+                     
                   </Segment>
                 </Transition>
 
