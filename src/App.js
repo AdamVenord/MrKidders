@@ -53,7 +53,7 @@ export default class App extends Component {
     visibleFightPart2: false, 
     visibleFightPart3: false, 
     visibleDeath: false,
-    visibleHideInTheKitchen: true,
+    visibleHideInTheKitchen: false,
     visibleHideInSomething: false,
     visibleSneakAPeak: false,
     visibleStayQuiet: false,
@@ -63,7 +63,8 @@ export default class App extends Component {
     visibleWrongPlaceToHide: false,
     visiblePrayDeath: false,
     visibleMakeABreakDeath: false,
-    visibleHoldingBreath: false, 
+    visibleHoldingBreath: true, 
+    visibleSafeForNow: false, 
 
   // Pirate Story States
     visiblePiratesButton: false, 
@@ -193,6 +194,9 @@ export default class App extends Component {
   toggleVisibilityForHoldingBreath = () => 
     this.setState((prevState) => ({ visibleHoldingBreath: !prevState.visibleHoldingBreath}))
 
+  toggleVisibilityForSafeForNow = () => 
+    this.setState((prevState) => ({ visibleSafeForNow: !prevState.visibleSafeForNow}))
+
     // pirate toggles
     
   toggleVisibilityForPiratesButton = () => 
@@ -242,6 +246,7 @@ export default class App extends Component {
       visiblePrayDeath,
       visibleMakeABreakDeath,
       visibleHoldingBreath,
+      visibleSafeForNow,
 
 
     // pirate states
@@ -754,6 +759,28 @@ export default class App extends Component {
                       <Button 
                         color="black"
                         content={visibleHoldingBreath ? 'Relief' : 'woot' }                  
+                        onClick={this.toggleVisibilityForSafeForNow}
+                      /> 
+                     
+                  </Segment>
+                </Transition>
+
+                <Transition visible={visibleSafeForNow} animation='drop' duration={500}>
+                  <Segment>
+                    <br />
+                      <p>
+                        You take a sigh of relief and think to yourself how to get out of this situation. Before you can think
+                         of anything kidders says I have an idea.
+                      </p>
+                      <br />
+                      <Button 
+                        color="black"
+                        content={visibleSafeForNow ? 'What is your wisdom kidders' : 'woot' }                  
+                        // onClick={this.toggleVisibilityForPrayDeath}
+                      /> 
+                      <Button 
+                        color="black"
+                        content={visibleSafeForNow ? 'I have a better idea' : 'woot' }                  
                         // onClick={this.toggleVisibilityForPrayDeath}
                       /> 
                      
