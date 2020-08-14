@@ -65,6 +65,7 @@ export default class App extends Component {
     visibleMakeABreakDeath: false,
     visibleHoldingBreath: true, 
     visibleSafeForNow: false, 
+    visibleBetterIdea: false,
 
   // Pirate Story States
     visiblePiratesButton: false, 
@@ -197,6 +198,9 @@ export default class App extends Component {
   toggleVisibilityForSafeForNow = () => 
     this.setState((prevState) => ({ visibleSafeForNow: !prevState.visibleSafeForNow}))
 
+  toggleVisibilityForBetterIdea = () => 
+    this.setState((prevState) => ({ visibleBetterIdea: !prevState.visibleBetterIdea}))
+
     // pirate toggles
     
   toggleVisibilityForPiratesButton = () => 
@@ -247,6 +251,7 @@ export default class App extends Component {
       visibleMakeABreakDeath,
       visibleHoldingBreath,
       visibleSafeForNow,
+      visibleBetterIdea,
 
 
     // pirate states
@@ -776,6 +781,27 @@ export default class App extends Component {
                       <Button 
                         color="black"
                         content={visibleSafeForNow ? 'What is your wisdom kidders' : 'woot' }                  
+                        // onClick={this.toggleVisibilityForPrayDeath}
+                      /> 
+                      <Button 
+                        color="black"
+                        content={visibleSafeForNow ? 'I have a better idea' : 'woot' }                  
+                        onClick={this.toggleVisibilityFoBetterIdea}
+                      /> 
+                     
+                  </Segment>
+                </Transition>
+
+                <Transition visible={visibleBetterIdea} animation='drop' duration={500}>
+                  <Segment>
+                    <br />
+                      <p>
+                        
+                      </p>
+                      <br />
+                      <Button 
+                        color="black"
+                        content={visibleBetterIdea ? 'What is your wisdom kidders' : 'woot' }                  
                         // onClick={this.toggleVisibilityForPrayDeath}
                       /> 
                       <Button 
