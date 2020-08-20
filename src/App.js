@@ -66,6 +66,7 @@ export default class App extends Component {
     visibleHoldingBreath: true, 
     visibleSafeForNow: false, 
     visibleBetterIdea: false,
+    visibleGoodPlan: false,
 
   // Pirate Story States
     visiblePiratesButton: false, 
@@ -201,6 +202,9 @@ export default class App extends Component {
   toggleVisibilityForBetterIdea = () => 
     this.setState((prevState) => ({ visibleBetterIdea: !prevState.visibleBetterIdea}))
 
+  toggleVisibilityForGoodPlan = () => 
+    this.setState((prevState) => ({ visibleGoodPlan: !prevState.visibleGoodPlan}))
+
     // pirate toggles
     
   toggleVisibilityForPiratesButton = () => 
@@ -252,6 +256,7 @@ export default class App extends Component {
       visibleHoldingBreath,
       visibleSafeForNow,
       visibleBetterIdea,
+      visibleGoodPlan,
 
 
     // pirate states
@@ -774,7 +779,7 @@ export default class App extends Component {
                   <Segment>
                     <br />
                       <p>
-                        You take a sigh of relief and think to yourself how to get out of this situation. Before you can think
+                        You take a sigh of relief and think to yourself how to get out of this situation. Before you can say
                          of anything kidders says I have an idea.
                       </p>
                       <br />
@@ -786,7 +791,7 @@ export default class App extends Component {
                       <Button 
                         color="black"
                         content={visibleSafeForNow ? 'I have a better idea' : 'woot' }                  
-                        onClick={this.toggleVisibilityFoBetterIdea}
+                        onClick={this.toggleVisibilityForBetterIdea}
                       /> 
                      
                   </Segment>
@@ -796,20 +801,35 @@ export default class App extends Component {
                   <Segment>
                     <br />
                       <p>
-                        
+                        Well you see kidders we could do one of two things
                       </p>
                       <br />
                       <Button 
                         color="black"
-                        content={visibleBetterIdea ? 'What is your wisdom kidders' : 'woot' }                  
-                        // onClick={this.toggleVisibilityForPrayDeath}
+                        content={visibleBetterIdea ? 'Lets kill it' : 'woot' }                  
+                        onClick={this.toggleVisibilityForGoodPlan}
                       /> 
                       <Button 
                         color="black"
-                        content={visibleSafeForNow ? 'I have a better idea' : 'woot' }                  
+                        content={visibleBetterIdea ? 'Use the bible upstairs' : 'woot' }                  
                         // onClick={this.toggleVisibilityForPrayDeath}
                       /> 
                      
+                  </Segment>
+                </Transition>
+
+                <Transition visible={visibleGoodPlan} animation='drop' duration={500}>
+                  <Segment>
+                    <br />
+                      <p>
+                      We should try and shoot it with dads silver bullet he keeps in his closet
+                      </p>
+                      <br />
+                      <Button 
+                        color="black"
+                        content={visibleBetterIdea ? 'Sneak Upstairs' : 'woot' }                  
+                        // onClick={this.toggleVisibilityForPrayDeath}
+                      /> 
                   </Segment>
                 </Transition>
 
