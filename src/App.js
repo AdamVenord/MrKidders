@@ -63,7 +63,7 @@ export default class App extends Component {
     visibleWrongPlaceToHide: false,
     visiblePrayDeath: false,
     visibleMakeABreakDeath: false,
-    visibleHoldingBreath: true, 
+    visibleHoldingBreath: false, 
     visibleSafeForNow: false, 
     visibleBetterIdea: false,
     visibleGoodPlan: false,
